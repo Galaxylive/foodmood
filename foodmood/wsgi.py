@@ -16,5 +16,5 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'foodmood.settings')
 application = get_wsgi_application()
 
 #use whitenoise package to serve static files on Heroku
-from whitenoise.django import DjangoWhiteNoise
-application = DjangoWhiteNoise(application)
+# from whitenoise.django import DjangoWhiteNoise
+# application = DjangoWhiteNoise(application)
