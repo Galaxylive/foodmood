@@ -1,1 +1,0 @@
-web:gunicorn foodmood.wsgi --log-file - 
