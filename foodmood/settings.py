@@ -25,7 +25,7 @@ SECRET_KEY = '4f$5ex5@=ey&n7smkwq*%%2p_fvj+=naf(=b(x&z7-k#x2-$#1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['young-journey-93619.herokuapp.com']
 
 
 # Application definition
