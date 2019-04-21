@@ -1,25 +1,15 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title> Home page</title>
+{% extends 'base_signup.html' %}
+{% load bootstrap3 %}
 
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'}">
-  <link rel="stylesheet" href="{% static 'css/style.css'}">
+{% block title %}Sign Up{% endblock %}
+{% block heading %}Restaurent - Sign up {% endblock %}
 
-  <script src="{% static 'js/bootstrap.min.js'}" charset="utf-8"></script>
-
-</head>
-<body>
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ user_form }}
-    {{ restaurent_form }}
-    <button type="submit">Sign Up</button>
-  </form>
-
-</body>
-</html>
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form user_form %}
+      {% bootstrap_form restaurent_form %}
+      <button type="submit" class="btn btn-pink float-right">Sign Up</button>
+    </form>
+    <a href="{% url 'restaurent-sign-in' %}">Already have an account?</a>
+{% endblock %}

@@ -1,0 +1,62 @@
+ {% extends 'base.html' %}
+
+{% block title %} Restaurent {% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function(){
+            var now  = new Date();
+            setInterval(function(){
+                $.ajax({
+                    url: '/api/restaurent/order/notification/' + now.toISOString() + '/',
+                    method: 'GET',
+                    success: function(data) {
+                        if (data['notification'] === 0){
+                            $('.badge').text('');
+                        } else {
+                            $('.badge').text(data['notification']);
+                        }
+                    }
+                })
+            },3000)
+        })
+    </script>
+{% endblock %}
+
+{% block sidebar %}
+
+  {% url 'restaurent-order' as restaurent_order_url %}
+  {% url 'restaurent-meal' as restaurent_meal_url %}
+  {% url 'restaurent-report' as restaurent_report_url %}
+  {% url 'restaurent-account' as restaurent_account_url %}
+  <div class="text-center">
+    <img class="rounded-circle" src="{{MEDIA_URL}}{{request.user.restaurent.logo}}"
+      width="80" height="80">
+      <br/>
+      <br/>
+      <h4>Hi {{ request.user.get_full_name }}</h4>
+      <h5> {{ request.user.restaurent.name }}</h5>
+  </div>
+  <div class="list-group">
+    <span class="text-uppercase">Dashboard</span>
+
+    <a href="{% url 'restaurent-order' %}"
+      class="list-group-item {% if request.path == restaurent_order_url %} active {% endif %}">
+      Orders
+      <span class="badge badge warning"></span>
+    </a>
+    <a href="{% url 'restaurent-meal' %}"
+      class="list-group-item {% if request.path == restaurent_meal_url %} active {% endif %}">Meals</a>
+    <a href="{% url 'restaurent-report' %}"
+      class="list-group-item {%  if request.path == restaurent_report_url %} active {% endif %}">Reports</a>
+
+    <span class="text-uppercase">Profile</span>
+    <a href="{% url 'restaurent-account' %}"
+      class="list-group-item {% if request.path == restaurent_account_url %} active {% endif %}">Account</a>
+  </div>
+  <div class="text-center">
+    <a href="{% url 'restaurent-sign-out'%}?next={{request.path}}"
+        class="btn btn-pink">Logout</a>
+  </div>
+
+{% endblock %}
