@@ -139,7 +139,7 @@ def driver_pick_orders(request):
         try:
             order = Order.objects.get(
                 id = request.POST["order_id"],
-                diver = None
+                diver = None,
                 status = Order.READY
             )
             order.driver = driver
