@@ -4,6 +4,7 @@ local_settings.py
 *.pyc
 migrations/
 ftenv/
+*.vscode
 
 
 # Byte-compiled / optimized / DLL files
